@@ -138,7 +138,7 @@ trainer = Trainer1D(
     dataset = dataset,
     train_batch_size = 32,
     train_lr = 8e-5,
-    train_num_steps = 7000,         # total training steps
+    train_num_steps = 700,         # total training steps
     gradient_accumulate_every = 2,    # gradient accumulation steps
     ema_decay = 0.995,                # exponential moving average decay
     amp = True,                       # turn on mixed precision
@@ -150,7 +150,7 @@ sampled_seq.shape  # (4, 32, 128) // 4 trials, 32 features, 128 rows in one tria
 
 print(sampled_seq)
 
-tensor_data = np.array(sampled_seq)
+tensor_data = np.array(sampled_seq.cpu())
 
 for i in range(sampled_seq.shape[0]):
     tensor_data[i] = scaler_list[i].inverse_transform(tensor_data[i])
